@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.FriendMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, name, color, avatar, url, introduction, create_time, update_time
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.Friend">
+                        <id column="id" property="id"/>
+                                                                                                                                        <result column="name" property="name"/>
+                                <result column="color" property="color"/>
+                                <result column="avatar" property="avatar"/>
+                                <result column="url" property="url"/>
+                                <result column="introduction" property="introduction"/>
+                                <result column="create_time" property="createTime"/>
+                                <result column="update_time" property="updateTime"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.Friend">
+        INSERT INTO t_friend
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="name != null" >
+                name,
+            </if>
+                    <if test="color != null" >
+                color,
+            </if>
+                    <if test="avatar != null" >
+                avatar,
+            </if>
+                    <if test="url != null" >
+                url,
+            </if>
+                    <if test="introduction != null" >
+                introduction,
+            </if>
+                    <if test="createTime != null" >
+                create_time,
+            </if>
+                    <if test="updateTime != null" >
+                update_time,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="name != null" >
+                    #{name},
+                </if>
+                            <if test="color != null" >
+                    #{color},
+                </if>
+                            <if test="avatar != null" >
+                    #{avatar},
+                </if>
+                            <if test="url != null" >
+                    #{url},
+                </if>
+                            <if test="introduction != null" >
+                    #{introduction},
+                </if>
+                            <if test="createTime != null" >
+                    #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    #{updateTime},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.Friend">
+        INSERT INTO t_friend
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    name,
+                    color,
+                    avatar,
+                    url,
+                    introduction,
+                    create_time,
+                    update_time,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{name},
+                            #{color},
+                            #{avatar},
+                            #{url},
+                            #{introduction},
+                            #{createTime},
+                            #{updateTime},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_friend
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.Friend">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_friend
+        <set >
+                            id = #{id},
+                            name = #{name},
+                            color = #{color},
+                            avatar = #{avatar},
+                            url = #{url},
+                            introduction = #{introduction},
+                            create_time = #{createTime},
+                            update_time = #{updateTime},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.Friend">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_friend
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="name != null" >
+                    name = #{name},
+                </if>
+                            <if test="color != null" >
+                    color = #{color},
+                </if>
+                            <if test="avatar != null" >
+                    avatar = #{avatar},
+                </if>
+                            <if test="url != null" >
+                    url = #{url},
+                </if>
+                            <if test="introduction != null" >
+                    introduction = #{introduction},
+                </if>
+                            <if test="createTime != null" >
+                    create_time = #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    update_time = #{updateTime},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_friend
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_friend
+    </select>
+
+</mapper>

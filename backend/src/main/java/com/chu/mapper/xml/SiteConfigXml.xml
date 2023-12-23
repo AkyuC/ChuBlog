@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.SiteConfigMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, site_name, site_address, site_intro, site_notice, create_site_time, record_number, author_avatar, tourist_avatar, site_author, article_cover, about_me, github, email, comment_check, email_notice, websocket_url, create_time, update_time
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.SiteConfig">
+                        <id column="id" property="id"/>
+                                                                                                                                                                                                                                                                            <result column="site_name" property="siteName"/>
+                                <result column="site_address" property="siteAddress"/>
+                                <result column="site_intro" property="siteIntro"/>
+                                <result column="site_notice" property="siteNotice"/>
+                                <result column="create_site_time" property="createSiteTime"/>
+                                <result column="record_number" property="recordNumber"/>
+                                <result column="author_avatar" property="authorAvatar"/>
+                                <result column="tourist_avatar" property="touristAvatar"/>
+                                <result column="site_author" property="siteAuthor"/>
+                                <result column="article_cover" property="articleCover"/>
+                                <result column="about_me" property="aboutMe"/>
+                                <result column="github" property="github"/>
+                                <result column="email" property="email"/>
+                                <result column="comment_check" property="commentCheck"/>
+                                <result column="email_notice" property="emailNotice"/>
+                                <result column="websocket_url" property="websocketUrl"/>
+                                <result column="create_time" property="createTime"/>
+                                <result column="update_time" property="updateTime"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.SiteConfig">
+        INSERT INTO t_site_config
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="siteName != null" >
+                site_name,
+            </if>
+                    <if test="siteAddress != null" >
+                site_address,
+            </if>
+                    <if test="siteIntro != null" >
+                site_intro,
+            </if>
+                    <if test="siteNotice != null" >
+                site_notice,
+            </if>
+                    <if test="createSiteTime != null" >
+                create_site_time,
+            </if>
+                    <if test="recordNumber != null" >
+                record_number,
+            </if>
+                    <if test="authorAvatar != null" >
+                author_avatar,
+            </if>
+                    <if test="touristAvatar != null" >
+                tourist_avatar,
+            </if>
+                    <if test="siteAuthor != null" >
+                site_author,
+            </if>
+                    <if test="articleCover != null" >
+                article_cover,
+            </if>
+                    <if test="aboutMe != null" >
+                about_me,
+            </if>
+                    <if test="github != null" >
+                github,
+            </if>
+                    <if test="email != null" >
+                email,
+            </if>
+                    <if test="commentCheck != null" >
+                comment_check,
+            </if>
+                    <if test="emailNotice != null" >
+                email_notice,
+            </if>
+                    <if test="websocketUrl != null" >
+                websocket_url,
+            </if>
+                    <if test="createTime != null" >
+                create_time,
+            </if>
+                    <if test="updateTime != null" >
+                update_time,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="siteName != null" >
+                    #{siteName},
+                </if>
+                            <if test="siteAddress != null" >
+                    #{siteAddress},
+                </if>
+                            <if test="siteIntro != null" >
+                    #{siteIntro},
+                </if>
+                            <if test="siteNotice != null" >
+                    #{siteNotice},
+                </if>
+                            <if test="createSiteTime != null" >
+                    #{createSiteTime},
+                </if>
+                            <if test="recordNumber != null" >
+                    #{recordNumber},
+                </if>
+                            <if test="authorAvatar != null" >
+                    #{authorAvatar},
+                </if>
+                            <if test="touristAvatar != null" >
+                    #{touristAvatar},
+                </if>
+                            <if test="siteAuthor != null" >
+                    #{siteAuthor},
+                </if>
+                            <if test="articleCover != null" >
+                    #{articleCover},
+                </if>
+                            <if test="aboutMe != null" >
+                    #{aboutMe},
+                </if>
+                            <if test="github != null" >
+                    #{github},
+                </if>
+                            <if test="email != null" >
+                    #{email},
+                </if>
+                            <if test="commentCheck != null" >
+                    #{commentCheck},
+                </if>
+                            <if test="emailNotice != null" >
+                    #{emailNotice},
+                </if>
+                            <if test="websocketUrl != null" >
+                    #{websocketUrl},
+                </if>
+                            <if test="createTime != null" >
+                    #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    #{updateTime},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.SiteConfig">
+        INSERT INTO t_site_config
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    site_name,
+                    site_address,
+                    site_intro,
+                    site_notice,
+                    create_site_time,
+                    record_number,
+                    author_avatar,
+                    tourist_avatar,
+                    site_author,
+                    article_cover,
+                    about_me,
+                    github,
+                    email,
+                    comment_check,
+                    email_notice,
+                    websocket_url,
+                    create_time,
+                    update_time,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{siteName},
+                            #{siteAddress},
+                            #{siteIntro},
+                            #{siteNotice},
+                            #{createSiteTime},
+                            #{recordNumber},
+                            #{authorAvatar},
+                            #{touristAvatar},
+                            #{siteAuthor},
+                            #{articleCover},
+                            #{aboutMe},
+                            #{github},
+                            #{email},
+                            #{commentCheck},
+                            #{emailNotice},
+                            #{websocketUrl},
+                            #{createTime},
+                            #{updateTime},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_site_config
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.SiteConfig">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_site_config
+        <set >
+                            id = #{id},
+                            site_name = #{siteName},
+                            site_address = #{siteAddress},
+                            site_intro = #{siteIntro},
+                            site_notice = #{siteNotice},
+                            create_site_time = #{createSiteTime},
+                            record_number = #{recordNumber},
+                            author_avatar = #{authorAvatar},
+                            tourist_avatar = #{touristAvatar},
+                            site_author = #{siteAuthor},
+                            article_cover = #{articleCover},
+                            about_me = #{aboutMe},
+                            github = #{github},
+                            email = #{email},
+                            comment_check = #{commentCheck},
+                            email_notice = #{emailNotice},
+                            websocket_url = #{websocketUrl},
+                            create_time = #{createTime},
+                            update_time = #{updateTime},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.SiteConfig">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_site_config
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="siteName != null" >
+                    site_name = #{siteName},
+                </if>
+                            <if test="siteAddress != null" >
+                    site_address = #{siteAddress},
+                </if>
+                            <if test="siteIntro != null" >
+                    site_intro = #{siteIntro},
+                </if>
+                            <if test="siteNotice != null" >
+                    site_notice = #{siteNotice},
+                </if>
+                            <if test="createSiteTime != null" >
+                    create_site_time = #{createSiteTime},
+                </if>
+                            <if test="recordNumber != null" >
+                    record_number = #{recordNumber},
+                </if>
+                            <if test="authorAvatar != null" >
+                    author_avatar = #{authorAvatar},
+                </if>
+                            <if test="touristAvatar != null" >
+                    tourist_avatar = #{touristAvatar},
+                </if>
+                            <if test="siteAuthor != null" >
+                    site_author = #{siteAuthor},
+                </if>
+                            <if test="articleCover != null" >
+                    article_cover = #{articleCover},
+                </if>
+                            <if test="aboutMe != null" >
+                    about_me = #{aboutMe},
+                </if>
+                            <if test="github != null" >
+                    github = #{github},
+                </if>
+                            <if test="email != null" >
+                    email = #{email},
+                </if>
+                            <if test="commentCheck != null" >
+                    comment_check = #{commentCheck},
+                </if>
+                            <if test="emailNotice != null" >
+                    email_notice = #{emailNotice},
+                </if>
+                            <if test="websocketUrl != null" >
+                    websocket_url = #{websocketUrl},
+                </if>
+                            <if test="createTime != null" >
+                    create_time = #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    update_time = #{updateTime},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_site_config
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_site_config
+    </select>
+
+</mapper>

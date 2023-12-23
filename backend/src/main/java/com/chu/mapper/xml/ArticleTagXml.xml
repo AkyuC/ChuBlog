@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.ArticleTagMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, article_id, tag_id
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.ArticleTag">
+                        <id column="id" property="id"/>
+                                                                            <result column="article_id" property="articleId"/>
+                                <result column="tag_id" property="tagId"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.ArticleTag">
+        INSERT INTO t_article_tag
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="articleId != null" >
+                article_id,
+            </if>
+                    <if test="tagId != null" >
+                tag_id,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="articleId != null" >
+                    #{articleId},
+                </if>
+                            <if test="tagId != null" >
+                    #{tagId},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.ArticleTag">
+        INSERT INTO t_article_tag
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    article_id,
+                    tag_id,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{articleId},
+                            #{tagId},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_article_tag
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.ArticleTag">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_article_tag
+        <set >
+                            id = #{id},
+                            article_id = #{articleId},
+                            tag_id = #{tagId},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.ArticleTag">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_article_tag
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="articleId != null" >
+                    article_id = #{articleId},
+                </if>
+                            <if test="tagId != null" >
+                    tag_id = #{tagId},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_article_tag
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_article_tag
+    </select>
+
+</mapper>

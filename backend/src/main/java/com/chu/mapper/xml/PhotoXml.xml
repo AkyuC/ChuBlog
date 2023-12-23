@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.PhotoMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, album_id, photo_name, photo_desc, photo_url, create_time, update_time
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.Photo">
+                        <id column="id" property="id"/>
+                                                                                                                            <result column="album_id" property="albumId"/>
+                                <result column="photo_name" property="photoName"/>
+                                <result column="photo_desc" property="photoDesc"/>
+                                <result column="photo_url" property="photoUrl"/>
+                                <result column="create_time" property="createTime"/>
+                                <result column="update_time" property="updateTime"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.Photo">
+        INSERT INTO t_photo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="albumId != null" >
+                album_id,
+            </if>
+                    <if test="photoName != null" >
+                photo_name,
+            </if>
+                    <if test="photoDesc != null" >
+                photo_desc,
+            </if>
+                    <if test="photoUrl != null" >
+                photo_url,
+            </if>
+                    <if test="createTime != null" >
+                create_time,
+            </if>
+                    <if test="updateTime != null" >
+                update_time,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="albumId != null" >
+                    #{albumId},
+                </if>
+                            <if test="photoName != null" >
+                    #{photoName},
+                </if>
+                            <if test="photoDesc != null" >
+                    #{photoDesc},
+                </if>
+                            <if test="photoUrl != null" >
+                    #{photoUrl},
+                </if>
+                            <if test="createTime != null" >
+                    #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    #{updateTime},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.Photo">
+        INSERT INTO t_photo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    album_id,
+                    photo_name,
+                    photo_desc,
+                    photo_url,
+                    create_time,
+                    update_time,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{albumId},
+                            #{photoName},
+                            #{photoDesc},
+                            #{photoUrl},
+                            #{createTime},
+                            #{updateTime},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_photo
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.Photo">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_photo
+        <set >
+                            id = #{id},
+                            album_id = #{albumId},
+                            photo_name = #{photoName},
+                            photo_desc = #{photoDesc},
+                            photo_url = #{photoUrl},
+                            create_time = #{createTime},
+                            update_time = #{updateTime},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.Photo">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_photo
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="albumId != null" >
+                    album_id = #{albumId},
+                </if>
+                            <if test="photoName != null" >
+                    photo_name = #{photoName},
+                </if>
+                            <if test="photoDesc != null" >
+                    photo_desc = #{photoDesc},
+                </if>
+                            <if test="photoUrl != null" >
+                    photo_url = #{photoUrl},
+                </if>
+                            <if test="createTime != null" >
+                    create_time = #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    update_time = #{updateTime},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_photo
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_photo
+    </select>
+
+</mapper>

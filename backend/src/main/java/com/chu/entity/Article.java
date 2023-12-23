@@ -1,88 +1,103 @@
 package com.chu.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 
 /**
- * @author: Chu
- * @description: 文章类
- * @date: 2023/12/22 15:00
- * @version: 1.0
+ * @Package: com.chu.entity
+ * @Author chu
+ * @CreateDate 2023-12-23
+ * @describe 实体类
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Article {
+@TableName("t_article")
+@ApiModel(value="Article对象", description="")
+public class Article implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+
     /**
-     * 文章id
-     */
-    @TableId(type = IdType.AUTO)
+    * 文章id
+    */
+    @TableId
+    @ApiModelProperty(value = "文章id")
     private Integer id;
 
     /**
-     * 文章分类
-     */
+    * 分类id
+    */
+    @ApiModelProperty(value = "分类id")
     private Integer categoryId;
 
     /**
-     * 文章缩略图
-     */
+    * 缩略图
+    */
+    @ApiModelProperty(value = "缩略图")
     private String articleCover;
 
     /**
-     * 文章标题
-     */
+    * 文章标题
+    */
+    @ApiModelProperty(value = "文章标题")
     private String articleTitle;
 
     /**
-     * 文章内容
-     */
+    * 文章内容
+    */
+    @ApiModelProperty(value = "文章内容")
     private String articleContent;
 
     /**
-     * 文章类型 (1原创 2转载 3翻译)
-     */
-    private Integer articleType;
+    * 类型 (1原创 2转载 3翻译)
+    */
+    @ApiModelProperty(value = "类型 (1原创 2转载 3翻译)")
+    private Boolean articleType;
 
     /**
-     * 是否置顶 (0否 1是)
-     */
-    private Integer isTop;
+    * 是否置顶 (0否 1是）
+    */
+    @ApiModelProperty(value = "是否置顶 (0否 1是）")
+    private Boolean isTop;
 
     /**
-     * 是否删除 (0否 1是)
-     */
-    private Integer isDelete;
+    * 是否删除 (0否 1是)
+    */
+    @ApiModelProperty(value = "是否删除 (0否 1是)")
+    private Boolean isDelete;
 
     /**
-     * 是否推荐 (0否 1是)
-     */
-    private Integer isRecommend;
+    * 是否推荐 (0否 1是)
+    */
+    @ApiModelProperty(value = "是否推荐 (0否 1是)")
+    private Boolean isRecommend;
 
     /**
-     * 状态 (1公开 2私密 3草稿)
-     */
-    private Integer status;
+    * 状态 (1公开 2私密 3评论可见)
+    */
+    @ApiModelProperty(value = "状态 (1公开 2私密 3评论可见)")
+    private Boolean status;
 
     /**
-     * 发表时间
-     */
-    @TableField(fill = FieldFill.INSERT)
+    * 发表时间
+    */
+    @ApiModelProperty(value = "发表时间")
     private LocalDateTime createTime;
 
     /**
-     * 更新时间
-     */
-    @TableField(fill = FieldFill.UPDATE)
+    * 更新时间
+    */
+    @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
+
 }

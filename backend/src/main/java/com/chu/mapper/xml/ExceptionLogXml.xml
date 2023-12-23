@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.ExceptionLogMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, module, uri, name, description, error_method, message, params, request_method, ip_address, ip_source, os, browser, create_time
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.ExceptionLog">
+                        <id column="id" property="id"/>
+                                                                                                                                                                                                                <result column="module" property="module"/>
+                                <result column="uri" property="uri"/>
+                                <result column="name" property="name"/>
+                                <result column="description" property="description"/>
+                                <result column="error_method" property="errorMethod"/>
+                                <result column="message" property="message"/>
+                                <result column="params" property="params"/>
+                                <result column="request_method" property="requestMethod"/>
+                                <result column="ip_address" property="ipAddress"/>
+                                <result column="ip_source" property="ipSource"/>
+                                <result column="os" property="os"/>
+                                <result column="browser" property="browser"/>
+                                <result column="create_time" property="createTime"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.ExceptionLog">
+        INSERT INTO t_exception_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="module != null" >
+                module,
+            </if>
+                    <if test="uri != null" >
+                uri,
+            </if>
+                    <if test="name != null" >
+                name,
+            </if>
+                    <if test="description != null" >
+                description,
+            </if>
+                    <if test="errorMethod != null" >
+                error_method,
+            </if>
+                    <if test="message != null" >
+                message,
+            </if>
+                    <if test="params != null" >
+                params,
+            </if>
+                    <if test="requestMethod != null" >
+                request_method,
+            </if>
+                    <if test="ipAddress != null" >
+                ip_address,
+            </if>
+                    <if test="ipSource != null" >
+                ip_source,
+            </if>
+                    <if test="os != null" >
+                os,
+            </if>
+                    <if test="browser != null" >
+                browser,
+            </if>
+                    <if test="createTime != null" >
+                create_time,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="module != null" >
+                    #{module},
+                </if>
+                            <if test="uri != null" >
+                    #{uri},
+                </if>
+                            <if test="name != null" >
+                    #{name},
+                </if>
+                            <if test="description != null" >
+                    #{description},
+                </if>
+                            <if test="errorMethod != null" >
+                    #{errorMethod},
+                </if>
+                            <if test="message != null" >
+                    #{message},
+                </if>
+                            <if test="params != null" >
+                    #{params},
+                </if>
+                            <if test="requestMethod != null" >
+                    #{requestMethod},
+                </if>
+                            <if test="ipAddress != null" >
+                    #{ipAddress},
+                </if>
+                            <if test="ipSource != null" >
+                    #{ipSource},
+                </if>
+                            <if test="os != null" >
+                    #{os},
+                </if>
+                            <if test="browser != null" >
+                    #{browser},
+                </if>
+                            <if test="createTime != null" >
+                    #{createTime},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.ExceptionLog">
+        INSERT INTO t_exception_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    module,
+                    uri,
+                    name,
+                    description,
+                    error_method,
+                    message,
+                    params,
+                    request_method,
+                    ip_address,
+                    ip_source,
+                    os,
+                    browser,
+                    create_time,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{module},
+                            #{uri},
+                            #{name},
+                            #{description},
+                            #{errorMethod},
+                            #{message},
+                            #{params},
+                            #{requestMethod},
+                            #{ipAddress},
+                            #{ipSource},
+                            #{os},
+                            #{browser},
+                            #{createTime},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_exception_log
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.ExceptionLog">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_exception_log
+        <set >
+                            id = #{id},
+                            module = #{module},
+                            uri = #{uri},
+                            name = #{name},
+                            description = #{description},
+                            error_method = #{errorMethod},
+                            message = #{message},
+                            params = #{params},
+                            request_method = #{requestMethod},
+                            ip_address = #{ipAddress},
+                            ip_source = #{ipSource},
+                            os = #{os},
+                            browser = #{browser},
+                            create_time = #{createTime},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.ExceptionLog">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_exception_log
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="module != null" >
+                    module = #{module},
+                </if>
+                            <if test="uri != null" >
+                    uri = #{uri},
+                </if>
+                            <if test="name != null" >
+                    name = #{name},
+                </if>
+                            <if test="description != null" >
+                    description = #{description},
+                </if>
+                            <if test="errorMethod != null" >
+                    error_method = #{errorMethod},
+                </if>
+                            <if test="message != null" >
+                    message = #{message},
+                </if>
+                            <if test="params != null" >
+                    params = #{params},
+                </if>
+                            <if test="requestMethod != null" >
+                    request_method = #{requestMethod},
+                </if>
+                            <if test="ipAddress != null" >
+                    ip_address = #{ipAddress},
+                </if>
+                            <if test="ipSource != null" >
+                    ip_source = #{ipSource},
+                </if>
+                            <if test="os != null" >
+                    os = #{os},
+                </if>
+                            <if test="browser != null" >
+                    browser = #{browser},
+                </if>
+                            <if test="createTime != null" >
+                    create_time = #{createTime},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_exception_log
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_exception_log
+    </select>
+
+</mapper>

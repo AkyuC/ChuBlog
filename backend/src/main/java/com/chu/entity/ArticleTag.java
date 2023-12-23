@@ -1,38 +1,49 @@
 package com.chu.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 /**
- * @author: Chu
- * @description: 文章标签
- * @date: 2023/12/22 15:10
- * @version: 1.0
+ * @Package: com.chu.entity
+ * @Author chu
+ * @CreateDate 2023-12-23
+ * @describe 实体类
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleTag {
+@TableName("t_article_tag")
+@ApiModel(value="ArticleTag对象", description="")
+public class ArticleTag implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 
     /**
-     * id
-     */
-    @TableId(type = IdType.AUTO)
+    * 主键
+    */
+    @TableId
+    @ApiModelProperty(value = "主键")
     private Integer id;
 
     /**
-     * 文章id
-     */
+    * 文章id
+    */
+    @ApiModelProperty(value = "文章id")
     private Integer articleId;
 
     /**
-     * 标签id
-     */
+    * 标签id
+    */
+    @ApiModelProperty(value = "标签id")
     private Integer tagId;
 
 }

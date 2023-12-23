@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.VisitLogMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, page, ip_address, ip_source, os, browser, create_time
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.VisitLog">
+                        <id column="id" property="id"/>
+                                                                                                                            <result column="page" property="page"/>
+                                <result column="ip_address" property="ipAddress"/>
+                                <result column="ip_source" property="ipSource"/>
+                                <result column="os" property="os"/>
+                                <result column="browser" property="browser"/>
+                                <result column="create_time" property="createTime"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.VisitLog">
+        INSERT INTO t_visit_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="page != null" >
+                page,
+            </if>
+                    <if test="ipAddress != null" >
+                ip_address,
+            </if>
+                    <if test="ipSource != null" >
+                ip_source,
+            </if>
+                    <if test="os != null" >
+                os,
+            </if>
+                    <if test="browser != null" >
+                browser,
+            </if>
+                    <if test="createTime != null" >
+                create_time,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="page != null" >
+                    #{page},
+                </if>
+                            <if test="ipAddress != null" >
+                    #{ipAddress},
+                </if>
+                            <if test="ipSource != null" >
+                    #{ipSource},
+                </if>
+                            <if test="os != null" >
+                    #{os},
+                </if>
+                            <if test="browser != null" >
+                    #{browser},
+                </if>
+                            <if test="createTime != null" >
+                    #{createTime},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.VisitLog">
+        INSERT INTO t_visit_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    page,
+                    ip_address,
+                    ip_source,
+                    os,
+                    browser,
+                    create_time,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{page},
+                            #{ipAddress},
+                            #{ipSource},
+                            #{os},
+                            #{browser},
+                            #{createTime},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_visit_log
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.VisitLog">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_visit_log
+        <set >
+                            id = #{id},
+                            page = #{page},
+                            ip_address = #{ipAddress},
+                            ip_source = #{ipSource},
+                            os = #{os},
+                            browser = #{browser},
+                            create_time = #{createTime},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.VisitLog">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_visit_log
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="page != null" >
+                    page = #{page},
+                </if>
+                            <if test="ipAddress != null" >
+                    ip_address = #{ipAddress},
+                </if>
+                            <if test="ipSource != null" >
+                    ip_source = #{ipSource},
+                </if>
+                            <if test="os != null" >
+                    os = #{os},
+                </if>
+                            <if test="browser != null" >
+                    browser = #{browser},
+                </if>
+                            <if test="createTime != null" >
+                    create_time = #{createTime},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_visit_log
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_visit_log
+    </select>
+
+</mapper>

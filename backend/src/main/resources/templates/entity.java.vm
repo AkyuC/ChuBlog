@@ -1,0 +1,71 @@
+package ${package.Entity};
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+#if(${swagger2})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+#end
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
+#if(${entityLombokModel})
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+#end
+
+
+/**
+ * @Package: ${package.Entity}
+ * @Author ${author}
+ * @CreateDate ${date}
+ * @describe $!{table.comment}实体类
+ */
+#if(${entityLombokModel})
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+#end
+@TableName("${table.name}")
+#if(${swagger2})
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@ApiModel(value="${entity}对象", description="$!{table.comment}")
+#end
+@ApiModel(value="${entity}对象", description="$!{table.comment}")
+#if(${superEntityClass})
+public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+#elseif(${activeRecord})
+public class ${entity} extends Model<${entity}> {
+#else
+public class ${entity} implements Serializable {
+#end
+
+    private static final long serialVersionUID = 1L;
+
+## ----------  BEGIN 字段循环遍历  ----------
+
+#foreach($field in ${table.fields})
+#if(${field.keyFlag})##生成主键排在第一位
+    /**
+    * ${field.comment}
+    */
+    @TableId
+    @ApiModelProperty(value = "${field.comment}")
+    private ${field.propertyType} ${field.propertyName};
+
+#end
+#end
+#foreach($field in ${table.fields})
+#if(!${field.keyFlag})##生成普通字段
+    /**
+    * ${field.comment}
+    */
+    @ApiModelProperty(value = "${field.comment}")
+    private ${field.propertyType} ${field.propertyName};
+
+#end
+#end
+}

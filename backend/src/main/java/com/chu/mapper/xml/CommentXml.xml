@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chu.mapper.CommentMapper">
+    
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+                id, comment_type, type_id, parent_id, reply_id, comment_content, from_uid, to_uid, is_check, create_time, update_time
+    </sql>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chu.entity.Comment">
+                        <id column="id" property="id"/>
+                                                                                                                                                                            <result column="comment_type" property="commentType"/>
+                                <result column="type_id" property="typeId"/>
+                                <result column="parent_id" property="parentId"/>
+                                <result column="reply_id" property="replyId"/>
+                                <result column="comment_content" property="commentContent"/>
+                                <result column="from_uid" property="fromUid"/>
+                                <result column="to_uid" property="toUid"/>
+                                <result column="is_check" property="isCheck"/>
+                                <result column="create_time" property="createTime"/>
+                                <result column="update_time" property="updateTime"/>
+                </resultMap>
+
+    <insert id="insertSelective" parameterType="com.chu.entity.Comment">
+        INSERT INTO t_comment
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != null" >
+                id,
+            </if>
+                    <if test="commentType != null" >
+                comment_type,
+            </if>
+                    <if test="typeId != null" >
+                type_id,
+            </if>
+                    <if test="parentId != null" >
+                parent_id,
+            </if>
+                    <if test="replyId != null" >
+                reply_id,
+            </if>
+                    <if test="commentContent != null" >
+                comment_content,
+            </if>
+                    <if test="fromUid != null" >
+                from_uid,
+            </if>
+                    <if test="toUid != null" >
+                to_uid,
+            </if>
+                    <if test="isCheck != null" >
+                is_check,
+            </if>
+                    <if test="createTime != null" >
+                create_time,
+            </if>
+                    <if test="updateTime != null" >
+                update_time,
+            </if>
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            <if test="id != null" >
+                    #{id},
+                </if>
+                            <if test="commentType != null" >
+                    #{commentType},
+                </if>
+                            <if test="typeId != null" >
+                    #{typeId},
+                </if>
+                            <if test="parentId != null" >
+                    #{parentId},
+                </if>
+                            <if test="replyId != null" >
+                    #{replyId},
+                </if>
+                            <if test="commentContent != null" >
+                    #{commentContent},
+                </if>
+                            <if test="fromUid != null" >
+                    #{fromUid},
+                </if>
+                            <if test="toUid != null" >
+                    #{toUid},
+                </if>
+                            <if test="isCheck != null" >
+                    #{isCheck},
+                </if>
+                            <if test="createTime != null" >
+                    #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    #{updateTime},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insert" parameterType="com.chu.entity.Comment">
+        INSERT INTO t_comment
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    id,
+                    comment_type,
+                    type_id,
+                    parent_id,
+                    reply_id,
+                    comment_content,
+                    from_uid,
+                    to_uid,
+                    is_check,
+                    create_time,
+                    update_time,
+                </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                            #{id},
+                            #{commentType},
+                            #{typeId},
+                            #{parentId},
+                            #{replyId},
+                            #{commentContent},
+                            #{fromUid},
+                            #{toUid},
+                            #{isCheck},
+                            #{createTime},
+                            #{updateTime},
+                    </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!-- 根据ID删除记录 -->
+        DELETE FROM t_comment
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateById" parameterType="com.chu.entity.Comment">
+        <!-- 根据ID更新记录 -->
+        UPDATE t_comment
+        <set >
+                            id = #{id},
+                            comment_type = #{commentType},
+                            type_id = #{typeId},
+                            parent_id = #{parentId},
+                            reply_id = #{replyId},
+                            comment_content = #{commentContent},
+                            from_uid = #{fromUid},
+                            to_uid = #{toUid},
+                            is_check = #{isCheck},
+                            create_time = #{createTime},
+                            update_time = #{updateTime},
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.chu.entity.Comment">
+        <!-- 根据ID更新记录，不写入null -->
+        UPDATE t_comment
+        <set >
+                            <if test="id != null" >
+                    id = #{id},
+                </if>
+                            <if test="commentType != null" >
+                    comment_type = #{commentType},
+                </if>
+                            <if test="typeId != null" >
+                    type_id = #{typeId},
+                </if>
+                            <if test="parentId != null" >
+                    parent_id = #{parentId},
+                </if>
+                            <if test="replyId != null" >
+                    reply_id = #{replyId},
+                </if>
+                            <if test="commentContent != null" >
+                    comment_content = #{commentContent},
+                </if>
+                            <if test="fromUid != null" >
+                    from_uid = #{fromUid},
+                </if>
+                            <if test="toUid != null" >
+                    to_uid = #{toUid},
+                </if>
+                            <if test="isCheck != null" >
+                    is_check = #{isCheck},
+                </if>
+                            <if test="createTime != null" >
+                    create_time = #{createTime},
+                </if>
+                            <if test="updateTime != null" >
+                    update_time = #{updateTime},
+                </if>
+                    </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <!-- 根据ID查询记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_comment
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        <!-- 查询所有记录 -->
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_comment
+    </select>
+
+</mapper>

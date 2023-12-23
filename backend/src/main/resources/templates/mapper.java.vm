@@ -1,0 +1,74 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import ${superMapperClassPackage};
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+
+/**
+ * @auther ${author}
+ * @create ${date}
+ * @describe $!{table.comment}mapper类
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+    /**
+     * 插入一条记录
+     *
+     * @param entity 实体对象
+     * @return 插入成功的条数
+     */
+    int insert(@Param("${entity.toLowerCase()}") ${entity} entity);
+
+    /**
+     * 插入一条记录，不插入null，使用默认值
+     *
+     * @param entity 实体对象
+     * @return 插入成功的条数
+     */
+    int insertSelective(@Param("${entity.toLowerCase()}") ${entity} entity);
+
+    /**
+     * 根据 ID 删除记录
+     *
+     * @param id 记录 ID
+     * @return 删除成功的条数
+     */
+    int deleteById(@Param("id") Long id);
+
+    /**
+     * 更新记录
+     *
+     * @param entity 实体对象
+     * @return 更新成功的条数
+     */
+    int updateById(@Param("${entity.toLowerCase()}") ${entity} entity);
+
+    /**
+     * 更新记录，不更新null
+     *
+     * @param entity 实体对象
+     * @return 更新成功的条数
+     */
+    int updateSelectiveById(@Param("${entity.toLowerCase()}") ${entity} entity);
+
+    /**
+     * 根据 ID 查询记录
+     *
+     * @param id 记录 ID
+     * @return 查询到的实体对象
+     */
+    ${entity} selectById(@Param("id") Long id);
+
+    /**
+     * 查询所有记录
+     *
+     * @return 所有记录的列表
+     */
+    List<${entity}> selectList();
+}
+#end
